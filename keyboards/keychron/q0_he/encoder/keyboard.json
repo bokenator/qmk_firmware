@@ -1,7 +1,7 @@
 {
     "keyboard_name": "Keychron Q0 HE",
     "usb": {
-        "pid": "0x0900",
+        "pid": "0x0B00",
         "device_version": "1.0.0"
     },
     "layouts": {

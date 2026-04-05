@@ -31,10 +31,10 @@
 #    define SPI_MOSI_PIN A7
 #endif
 
-/* SNLED27351 Driver Configuration (SPI — same as all HE boards) */
+/* SNLED27351 Driver Configuration (SPI — same as Q1 HE) */
 #if defined(RGB_MATRIX_ENABLE)
 #    define SNLED27351_SELECT_PINS \
-        { B8 }
+        { B9 }
 #    define SNLED27351_SDB_PIN B7
 #    define SNLED27351_PHASE_CHANNEL SNLED27351_SCAN_PHASE_9_CHANNEL
 #    define SNLED27351_SPI_DIVISOR 16

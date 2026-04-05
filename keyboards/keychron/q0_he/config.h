@@ -1,0 +1,73 @@
+#pragma once
+
+#include "eeconfig_kb.h"
+
+/* External EEPROM Configuration */
+#define I2C_DRIVER I2CD3
+#define I2C1_SCL_PIN A8
+#define I2C1_SDA_PIN C9
+#define EXTERNAL_EEPROM_WP_PIN B10
+
+/* Analog Matrix Configuration */
+#define ANALOG_MATRIX_POWER_PIN C13
+#define ANALOG_MATRIX_POWER_ENABLE_LEVEL 1
+#define ANALOG_MATRIX_WAKEUP_PIN C5
+
+/* Encoder Configuration */
+#define ENCODER_DEFAULT_POS 0x3
+#define ENCODER_MAP_KEY_DELAY 2
+
+/* Joystick Configuration */
+#ifdef JOYSTICK_ENABLE
+#    define JOYSTICK_AXIS_COUNT 6
+#    define JOYSTICK_BUTTON_COUNT 16
+#endif
+
+/* SPI Configuration */
+#if defined(RGB_MATRIX_ENABLE) || defined(LK_WIRELESS_ENABLE)
+#    define SPI_DRIVER SPID1
+#    define SPI_SCK_PIN A5
+#    define SPI_MISO_PIN A6
+#    define SPI_MOSI_PIN A7
+#endif
+
+/* SNLED27351 Driver Configuration */
+#if defined(RGB_MATRIX_ENABLE)
+#    define SNLED27351_I2C_ADDRESS_1 SNLED27351_I2C_ADDRESS_VDDIO
+#    define SNLED27351_PHASE_CHANNEL SNLED27351_SCAN_PHASE_9_CHANNEL
+#    define SNLED27351_SPI_DIVISOR 16
+#endif
+
+/* Wireless Configuration (from Q0 Max) */
+#ifdef LK_WIRELESS_ENABLE
+#    define P24G_MODE_SELECT_PIN A10
+#    define BT_MODE_SELECT_PIN A9
+
+#    define LKBT51_RESET_PIN C4
+#    define WIRELESS_TO_MCU_INT_PIN B0
+#    define MCU_TO_WIRELESS_INT_PIN A4
+
+#    define USB_POWER_SENSE_PIN B1
+#    define USB_POWER_CONNECTED_LEVEL 0
+
+#    define BAT_CHARGING_PIN C11
+#    define BAT_CHARGING_LEVEL 0
+
+#    define BT_HOST_DEVICES_COUNT 3
+
+#    if defined(RGB_MATRIX_ENABLE)
+#        define P24G_INDICATION_LED_MATRIX_INDEX 3
+#        define BT_INDCATION_LED_MATRIX_LIST \
+            { 0, 1, 2 }
+
+#        define DISCONNECTED_BACKLIGHT_DISABLE_TIMEOUT 40
+#        define CONNECTED_BACKLIGHT_DISABLE_TIMEOUT 600
+#        define LED_DRIVER_REINIT_ON_TRANSPORT_CHANGE
+#    endif
+
+#    define KEEP_USB_CONNECTION_IN_WIRELESS_MODE
+#endif
+
+/* Factory Test Keys */
+#define FN_KEY_1 MO(1)
+#define FN_BL_TRIG_KEY KC_DEL

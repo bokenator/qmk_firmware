@@ -16,6 +16,9 @@
 /* Encoder Configuration */
 #define ENCODER_DEFAULT_POS 0x3
 #define ENCODER_MAP_KEY_DELAY 2
+#define ENCODER_SWITCH_PIN A3
+#define ENCODER_MATRIX_ROW 0
+#define ENCODER_MATROX_COL 0
 
 /* Joystick Configuration */
 #ifdef JOYSTICK_ENABLE

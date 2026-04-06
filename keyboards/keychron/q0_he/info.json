@@ -12,7 +12,9 @@
         "extrakey": true,
         "mousekey": true,
         "nkro": true,
-        "rgb_matrix": true
+        "rgb_matrix": true,
+        "encoder": true,
+        "encoder_map": true
     },
     "matrix_pins": {
         "cols": [null, null, null, null, null],
@@ -21,6 +23,14 @@
         "custom_lite": true
     },
     "diode_direction": "ROW2COL",
+    "encoder": {
+        "rotary": [
+            {
+                "pin_a": "B14",
+                "pin_b": "B15"
+            }
+        ]
+    },
     "build": {
         "debounce_type": "custom"
     },

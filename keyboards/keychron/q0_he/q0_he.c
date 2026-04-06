@@ -15,6 +15,12 @@
  */
 
 #include "quantum.h"
+#include "keychron_common.h"
+
+void keyboard_post_init_kb(void) {
+    keychron_common_init();
+    keyboard_post_init_user();
+}
 
 #ifdef RGB_MATRIX_ENABLE
 

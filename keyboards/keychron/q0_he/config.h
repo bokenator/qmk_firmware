@@ -46,10 +46,10 @@
 #    define BT_MODE_SELECT_PIN A9
 
 #    define LKBT51_RESET_PIN C4
-#    define WIRELESS_TO_MCU_INT_PIN B0
+#    define WIRELESS_TO_MCU_INT_PIN B1
 #    define MCU_TO_WIRELESS_INT_PIN A4
 
-#    define USB_POWER_SENSE_PIN B1
+#    define USB_POWER_SENSE_PIN B0
 #    define USB_POWER_CONNECTED_LEVEL 0
 
 #    define BAT_CHARGING_PIN C11

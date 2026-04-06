@@ -31,7 +31,7 @@
 #    define SPI_MOSI_PIN A7
 #endif
 
-/* SNLED27351 Driver Configuration (SPI — same as Q1 HE) */
+/* SNLED27351 Driver Configuration */
 #if defined(RGB_MATRIX_ENABLE)
 #    define SNLED27351_SELECT_PINS \
         { B9 }
@@ -40,7 +40,7 @@
 #    define SNLED27351_SPI_DIVISOR 16
 #endif
 
-/* Wireless Configuration (from Q0 Max) */
+/* Wireless Configuration */
 #ifdef LK_WIRELESS_ENABLE
 #    define P24G_MODE_SELECT_PIN A10
 #    define BT_MODE_SELECT_PIN A9

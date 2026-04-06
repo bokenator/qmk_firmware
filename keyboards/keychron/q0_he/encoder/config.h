@@ -15,7 +15,6 @@
 
 #    define RGB_MATRIX_KEYPRESSES
 #    define RGB_MATRIX_FRAMEBUFFER_EFFECTS
-#endif
-
 #    define PROFILE_LED_MATRIX_LIST \
         { 4, 5, 6 }
+#endif

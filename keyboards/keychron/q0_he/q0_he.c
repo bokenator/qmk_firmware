@@ -16,10 +16,33 @@
 
 #include "quantum.h"
 #include "keychron_common.h"
+#include "backlit_indicator.h"
 
 void keyboard_post_init_kb(void) {
     keychron_common_init();
     keyboard_post_init_user();
+}
+
+extern void matrix_init_custom(void);
+
+#ifdef LK_WIRELESS_ENABLE
+bool lpm_is_kb_idle(void) {
+    return !backlight_indicator_is_active();
+}
+
+void lpm_enter_low_power_kb(void) {
+    /* Re-enable analog matrix power after standard LPM entry turned it off,
+     * so the wakeup pin can detect keypresses from HE sensors */
+    setPinOutput(ANALOG_MATRIX_POWER_PIN);
+    writePin(ANALOG_MATRIX_POWER_PIN, ANALOG_MATRIX_POWER_ENABLE_LEVEL);
+}
+#endif
+
+void matrix_exit_low_power(void) {
+#ifdef ANALOG_MATRIX_WAKEUP_PIN
+    palDisableLineEvent(ANALOG_MATRIX_WAKEUP_PIN);
+#endif
+    matrix_init_custom();
 }
 
 #ifdef RGB_MATRIX_ENABLE

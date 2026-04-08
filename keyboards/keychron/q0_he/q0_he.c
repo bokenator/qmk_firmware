@@ -31,16 +31,27 @@ bool lpm_is_kb_idle(void) {
 }
 
 void lpm_enter_low_power_kb(void) {
-    /* Re-enable analog matrix power after standard LPM entry turned it off,
-     * so the wakeup pin can detect keypresses from HE sensors */
-    setPinOutput(ANALOG_MATRIX_POWER_PIN);
-    writePin(ANALOG_MATRIX_POWER_PIN, ANALOG_MATRIX_POWER_ENABLE_LEVEL);
+    /* board.h sets C5 to pulldown, forcing it LOW. matrix_enter_low_power()
+     * enables FALLING_EDGE EXTI on C5, but since C5 is already LOW, the
+     * edge never fires. Fix by switching C5 to pullup so it starts HIGH
+     * and can fall when the wakeup circuit activates on keypress. */
+    setPinInputHigh(ANALOG_MATRIX_WAKEUP_PIN);
+
+    /* Enable encoder switch (A3) as a wakeup source — it's a regular
+     * mechanical button that works without HE sensor power. */
+#ifdef ENCODER_SWITCH_PIN
+    setPinInputHigh(ENCODER_SWITCH_PIN);
+    palEnableLineEvent(ENCODER_SWITCH_PIN, PAL_EVENT_MODE_FALLING_EDGE);
+#endif
 }
 #endif
 
 void matrix_exit_low_power(void) {
 #ifdef ANALOG_MATRIX_WAKEUP_PIN
     palDisableLineEvent(ANALOG_MATRIX_WAKEUP_PIN);
+#endif
+#ifdef ENCODER_SWITCH_PIN
+    palDisableLineEvent(ENCODER_SWITCH_PIN);
 #endif
     matrix_init_custom();
 }

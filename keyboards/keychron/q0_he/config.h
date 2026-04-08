@@ -65,8 +65,6 @@
 #        define BT_INDCATION_LED_MATRIX_LIST \
             { 0, 1, 2 }
 
-#        define DISCONNECTED_BACKLIGHT_DISABLE_TIMEOUT 40
-#        define CONNECTED_BACKLIGHT_DISABLE_TIMEOUT 600
 #        define LED_DRIVER_REINIT_ON_TRANSPORT_CHANGE
 #    endif
 

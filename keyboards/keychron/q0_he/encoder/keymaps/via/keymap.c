@@ -172,17 +172,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [NAV] = LAYOUT_numpad_6x5(
         _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______,
-        _______, KC_HOME, KC_UP,   KC_END,  _______,
+        _______, KC_HOME, KC_UP,   KC_PGUP, _______,
         _______, KC_LEFT, KC_DOWN, KC_RGHT,
-        _______, KC_PGUP, XXXXXXX, KC_PGDN, _______,
+        _______, KC_END,  XXXXXXX, KC_PGDN, _______,
         _______, KC_INS,           KC_DEL          ),
 
     [FN] = LAYOUT_numpad_6x5(
         UG_TOGG, BT_HST1, BT_HST2, BT_HST3, P2P4G,
         _______, _______, _______, _______, _______,
-        _______, KC_HOME, KC_UP,   KC_END,  KC_LSFT,
+        _______, KC_HOME, KC_UP,   KC_PGUP, KC_LSFT,
         _______, KC_LEFT, KC_DOWN, KC_RGHT,
-        _______, KC_PGUP, XXXXXXX, KC_PGDN, KC_ENT,
+        _______, KC_END,  XXXXXXX, KC_PGDN, KC_ENT,
         _______, KC_INS,           KC_DEL          ),
 };
 // clang-format on

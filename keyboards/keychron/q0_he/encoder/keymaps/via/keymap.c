@@ -118,7 +118,8 @@ static layer_state_t numlock_saved_layers = 0;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (numlock_held && record->event.pressed &&
-        !(record->event.key.row == 1 && record->event.key.col == 1))
+        !(record->event.key.row == 1 && record->event.key.col == 1) &&
+        !(record->event.key.row == 1 && record->event.key.col == 0))
         numlock_other_pressed = true;
 
     if (record->event.key.row == 1 && record->event.key.col == 0) {

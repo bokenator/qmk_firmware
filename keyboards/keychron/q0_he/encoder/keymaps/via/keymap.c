@@ -123,8 +123,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         numlock_other_pressed = true;
 
     if (record->event.key.row == 1 && record->event.key.col == 0) {
-        if (record->event.pressed) { m1_held = true; m1_combo_used = false; }
-        else { if (!m1_combo_used) layer_move(CUSTOM); m1_held = false; }
+        if (record->event.pressed) {
+            m1_held = true; m1_combo_used = false;
+            if (numlock_held) {
+                layer_move(NAV);
+                m1_combo_used = true;
+                numlock_held = false;
+            }
+        } else { if (!m1_combo_used) layer_move(CUSTOM); m1_held = false; }
         return false;
     }
     if (record->event.key.row == 1 && record->event.key.col == 1) {

@@ -73,7 +73,6 @@ FOR_EACH_ALT_CHORD(X)
 
 const uint16_t PROGMEM combo_bspc[] = {KC_LSFT, KC_N, COMBO_END};
 const uint16_t PROGMEM combo_del[]  = {KC_LSFT, KC_E, COMBO_END};
-const uint16_t PROGMEM combo_ent[]  = {CMB_MOD, KC_LSFT, COMBO_END};
 const uint16_t PROGMEM global_tab[] = {KC_P, KC_L, COMBO_END};
 
 combo_t key_combos[] = {
@@ -93,7 +92,6 @@ combo_t key_combos[] = {
     #define X(name, b, s, k1, k2) COMBO(sym_shift_##name, s),
     FOR_EACH_SYMBOL_PAIR(X)
     #undef X
-    COMBO(combo_ent, KC_ENT),
     #define X(name, kc, k1, k2) COMBO(chord_##name, kc),
     FOR_EACH_CHORD(X)
     #undef X

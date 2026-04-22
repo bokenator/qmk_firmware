@@ -23,6 +23,41 @@ void keyboard_post_init_kb(void) {
     keyboard_post_init_user();
 }
 
+/* Set M1/NumLock indicator LEDs based on current layer state */
+static void set_layer_indicators(void) {
+    rgb_matrix_set_color_all(0, 0, 0);
+    layer_state_t state = layer_state;
+    if (state & (1 << 2)) { /* NAV */
+        rgb_matrix_set_color(4, 255, 255, 255);
+        rgb_matrix_set_color(5, 255, 255, 255);
+    } else if (state & (1 << 1)) { /* CUSTOM */
+        rgb_matrix_set_color(4, 255, 255, 255);
+    } else { /* BASE */
+        rgb_matrix_set_color(5, 255, 255, 255);
+    }
+}
+
+/* Called every frame when RGB is enabled — integrates with the Keychron
+ * indicator pipeline (os_state, wireless, backlight indicators). */
+bool rgb_matrix_indicators_keychron(void) {
+    set_layer_indicators();
+    return true;
+}
+
+/* Called when layer changes — updates LEDs even when RGB is disabled,
+ * using the same pattern as Keychron's led_update_kb for lock indicators. */
+layer_state_t layer_state_set_kb(layer_state_t state) {
+    if (!rgb_matrix_is_enabled()) {
+        rgb_matrix_driver_exit_shutdown();
+        set_layer_indicators();
+        rgb_matrix_driver.flush();
+        if (rgb_matrix_driver_allow_shutdown()) {
+            rgb_matrix_driver_shutdown();
+        }
+    }
+    return layer_state_set_user(state);
+}
+
 extern void matrix_init_custom(void);
 
 #ifdef LK_WIRELESS_ENABLE

@@ -187,23 +187,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 // clang-format on
 
-#define M1_LED_INDEX 4
-#define NUMLOCK_LED_INDEX 5
 
-bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-    rgb_matrix_set_color_all(0, 0, 0);
-
-    if (layer_state_is(NAV)) {
-        rgb_matrix_set_color(M1_LED_INDEX, 255, 255, 255);
-        rgb_matrix_set_color(NUMLOCK_LED_INDEX, 255, 255, 255);
-    } else if (layer_state_is(CUSTOM)) {
-        rgb_matrix_set_color(M1_LED_INDEX, 255, 255, 255);
-    } else {
-        rgb_matrix_set_color(NUMLOCK_LED_INDEX, 255, 255, 255);
-    }
-
-    return false;
-}
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {

@@ -69,6 +69,7 @@
 #    endif
 
 #    define KEEP_USB_CONNECTION_IN_WIRELESS_MODE
+#    define WIRELESS_NKRO_ENABLE
 #endif
 
 /* Factory Test Keys */

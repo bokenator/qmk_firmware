@@ -20,7 +20,7 @@ enum layers { BASE, CUSTOM, NAV, FN };
     X(z, KC_Q, KC_P, KC_N) X(q, KC_Z, KC_D, KC_S)
 
 #define FOR_EACH_ALT_CHORD(X) \
-    X(s, KC_S, KC_P, KC_R) X(p, KC_P, KC_D, KC_H)
+    X(s, KC_S, KC_P, KC_R) X(p, KC_P, KC_D, KC_H) X(e, KC_E, KC_A, KC_I)
 
 #define FOR_EACH_BRACKET(X) \
     X(paren, S(KC_9),    S(KC_0),    KC_A, KC_N) \

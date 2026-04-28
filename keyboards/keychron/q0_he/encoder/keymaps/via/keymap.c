@@ -109,6 +109,8 @@ combo_t key_combos[] = {
 
 #define COMBO_COUNT (sizeof(key_combos) / sizeof(key_combos[0]))
 #define GLOBAL_TAB_IDX (COMBO_COUNT - 1)
+#define BSPC_IDX 0
+#define DEL_IDX 1
 
 static bool m1_held = false;
 static bool m1_combo_used = false;
@@ -152,6 +154,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
     if (combo_index == GLOBAL_TAB_IDX) return true;
+    if (combo_index == BSPC_IDX || combo_index == DEL_IDX) return true;
     return layer_state_is(CUSTOM);
 }
 
@@ -163,7 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TO(CUSTOM), KC_NUM, KC_SLSH, S(KC_8), KC_MINS,
         _______,    KC_7,   KC_8,    KC_9,    S(KC_EQL),
         _______,    KC_4,   KC_5,    KC_6,
-        _______,    KC_1,   KC_2,    KC_3,    KC_ENT,
+        _______,    KC_1,   KC_2,    KC_3,    KC_SPC,
         MO(FN),  KC_0,              KC_DOT          ),
 
     [CUSTOM] = LAYOUT_numpad_6x5(

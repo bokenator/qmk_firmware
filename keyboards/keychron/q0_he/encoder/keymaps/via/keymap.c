@@ -114,6 +114,8 @@ combo_t key_combos[] = {
 
 static bool m1_held = false;
 static bool m1_combo_used = false;
+static bool m1_other_pressed = false;
+static layer_state_t m1_saved_layers = 0;
 static bool numlock_held = false;
 static bool numlock_other_pressed = false;
 static layer_state_t numlock_saved_layers = 0;
@@ -124,15 +126,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         !(record->event.key.row == 1 && record->event.key.col == 0))
         numlock_other_pressed = true;
 
+    if (m1_held && record->event.pressed &&
+        !(record->event.key.row == 1 && record->event.key.col == 0) &&
+        !(record->event.key.row == 1 && record->event.key.col == 1))
+        m1_other_pressed = true;
+
     if (record->event.key.row == 1 && record->event.key.col == 0) {
         if (record->event.pressed) {
-            m1_held = true; m1_combo_used = false;
+            m1_held = true; m1_combo_used = false; m1_other_pressed = false;
             if (numlock_held) {
                 layer_move(NAV);
                 m1_combo_used = true;
                 numlock_held = false;
+            } else {
+                m1_saved_layers = layer_state;
+                layer_move(CUSTOM);
             }
-        } else { if (!m1_combo_used) layer_move(CUSTOM); m1_held = false; }
+        } else {
+            if (!m1_combo_used && m1_other_pressed) layer_state_set(m1_saved_layers);
+            m1_held = false;
+        }
         return false;
     }
     if (record->event.key.row == 1 && record->event.key.col == 1) {

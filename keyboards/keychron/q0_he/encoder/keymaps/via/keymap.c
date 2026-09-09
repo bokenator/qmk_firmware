@@ -6,25 +6,25 @@ enum layers { BASE, CUSTOM, NAV, FN };
 #define CMB_MOD KC_SPC
 
 #define FOR_EACH_SINGLE(X) \
-    X(p, KC_P) X(l, KC_L) X(r, KC_R) X(n, KC_N) \
+    X(c, KC_C) X(l, KC_L) X(r, KC_R) X(n, KC_N) \
     X(a, KC_A) X(o, KC_O) X(i, KC_I) X(e, KC_E) \
     X(d, KC_D) X(t, KC_T) X(h, KC_H) X(s, KC_S)
 
 #define FOR_EACH_CHORD(X) \
     X(u, KC_U, KC_I, KC_E) X(m, KC_M, KC_O, KC_I) \
     X(f, KC_F, KC_A, KC_E) X(g, KC_G, KC_O, KC_E) \
-    X(c, KC_C, KC_D, KC_T) X(y, KC_Y, KC_R, KC_N) \
+    X(p, KC_P, KC_D, KC_T) X(y, KC_Y, KC_R, KC_N) \
     X(w, KC_W, KC_H, KC_S) X(b, KC_B, KC_L, KC_N) \
     X(v, KC_V, KC_A, KC_O) X(k, KC_K, KC_L, KC_R) \
     X(j, KC_J, KC_T, KC_S) X(x, KC_X, KC_T, KC_H) \
-    X(z, KC_Q, KC_P, KC_N) X(q, KC_Z, KC_D, KC_S)
+    X(z, KC_Q, KC_C, KC_N) X(q, KC_Z, KC_D, KC_S)
 
 #define FOR_EACH_ALT_CHORD(X) \
-    X(c, KC_C, KC_P, KC_R) X(p, KC_P, KC_D, KC_H) X(y, KC_Y, KC_A, KC_I)
+    X(p, KC_P, KC_C, KC_R) X(c, KC_C, KC_D, KC_H) X(y, KC_Y, KC_A, KC_I)
 
 #define FOR_EACH_BRACKET(X) \
     X(paren, S(KC_9),    S(KC_0),    KC_A, KC_N) \
-    X(brace, S(KC_LBRC), S(KC_RBRC), KC_P, KC_E) \
+    X(brace, S(KC_LBRC), S(KC_RBRC), KC_C, KC_E) \
     X(angle, S(KC_COMM), S(KC_DOT),  KC_D, KC_E) \
     X(brack, KC_LBRC,    KC_RBRC,    KC_A, KC_S)
 
@@ -73,7 +73,7 @@ FOR_EACH_ALT_CHORD(X)
 
 const uint16_t PROGMEM combo_bspc[] = {KC_LSFT, KC_N, COMBO_END};
 const uint16_t PROGMEM combo_del[]  = {KC_LSFT, KC_E, COMBO_END};
-const uint16_t PROGMEM global_tab[] = {KC_P, KC_L, COMBO_END};
+const uint16_t PROGMEM global_tab[] = {KC_C, KC_L, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(combo_bspc, KC_BSPC), COMBO(combo_del, KC_DEL),
@@ -194,7 +194,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [CUSTOM] = LAYOUT_numpad_6x5(
         _______,     _______, _______, _______,  _______,
         _______,     _______, XXXXXXX, XXXXXXX,  KC_LALT,
-        KC_P,        KC_L,    KC_R,    KC_N,     KC_LSFT,
+        KC_C,        KC_L,    KC_R,    KC_N,     KC_LSFT,
         KC_A,        KC_O,    KC_I,    KC_E,
         KC_D,        KC_T,    KC_H,    KC_S,     CMB_MOD,
         MO(FN),      KC_LGUI,          KC_LCTL          ),

@@ -60,8 +60,8 @@ enum layers {
     X(k, KC_K, KC_L, KC_R) \
     X(j, KC_J, KC_T, KC_S) \
     X(x, KC_X, KC_T, KC_H) \
-    X(z, KC_Q, KC_C, KC_N) \
-    X(q, KC_Z, KC_D, KC_S)
+    X(q, KC_Q, KC_C, KC_N) \
+    X(z, KC_Z, KC_D, KC_S)
 
 // ── Alt chords ──
 #define FOR_EACH_ALT_CHORD(X) \

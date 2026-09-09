@@ -17,7 +17,7 @@ enum layers { BASE, CUSTOM, NAV, FN };
     X(w, KC_W, KC_H, KC_S) X(b, KC_B, KC_L, KC_N) \
     X(v, KC_V, KC_A, KC_O) X(k, KC_K, KC_L, KC_R) \
     X(j, KC_J, KC_T, KC_S) X(x, KC_X, KC_T, KC_H) \
-    X(z, KC_Q, KC_C, KC_N) X(q, KC_Z, KC_D, KC_S)
+    X(q, KC_Q, KC_C, KC_N) X(z, KC_Z, KC_D, KC_S)
 
 #define FOR_EACH_ALT_CHORD(X) \
     X(p, KC_P, KC_C, KC_R) X(c, KC_C, KC_D, KC_H) X(y, KC_Y, KC_A, KC_I)

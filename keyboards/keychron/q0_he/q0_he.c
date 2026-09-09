@@ -23,10 +23,9 @@ void keyboard_post_init_kb(void) {
     keyboard_post_init_user();
 }
 
-/* Set M1/NumLock indicator LEDs based on current layer state */
-static void set_layer_indicators(void) {
+/* Set M1/NumLock indicator LEDs for the given layer state */
+static void set_layer_indicators(layer_state_t state) {
     rgb_matrix_set_color_all(0, 0, 0);
-    layer_state_t state = layer_state;
     if (state & (1 << 2)) { /* NAV */
         rgb_matrix_set_color(4, 255, 255, 255);
         rgb_matrix_set_color(5, 255, 255, 255);
@@ -40,22 +39,27 @@ static void set_layer_indicators(void) {
 /* Called every frame when RGB is enabled — integrates with the Keychron
  * indicator pipeline (os_state, wireless, backlight indicators). */
 bool rgb_matrix_indicators_keychron(void) {
-    set_layer_indicators();
+    set_layer_indicators(layer_state);
     return true;
 }
 
-/* Called when layer changes — updates LEDs even when RGB is disabled,
- * using the same pattern as Keychron's led_update_kb for lock indicators. */
-layer_state_t layer_state_set_kb(layer_state_t state) {
+/* Refresh the indicators when RGB is disabled, using the same wake/set/flush/
+ * shutdown pattern as Keychron's led_update_kb for lock indicators.
+ *
+ * Called from the keymap's layer_state_set_user() rather than from
+ * layer_state_set_kb(), which keychron/common/state_notify.c already defines
+ * (non-weak) for the layer-change raw HID notification. The state must be
+ * passed in: the global layer_state is not updated until after the
+ * layer_state_set_* chain returns (quantum/action_layer.c). */
+void q0_he_update_layer_indicators(layer_state_t state) {
     if (!rgb_matrix_is_enabled()) {
         rgb_matrix_driver_exit_shutdown();
-        set_layer_indicators();
+        set_layer_indicators(state);
         rgb_matrix_driver.flush();
         if (rgb_matrix_driver_allow_shutdown()) {
             rgb_matrix_driver_shutdown();
         }
     }
-    return layer_state_set_user(state);
 }
 
 extern void matrix_init_custom(void);

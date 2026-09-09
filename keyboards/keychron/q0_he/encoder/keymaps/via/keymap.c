@@ -171,6 +171,15 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
     return layer_state_is(CUSTOM);
 }
 
+/* Board-level indicator refresh for when RGB is disabled. Lives in q0_he.c;
+ * hooked here because keychron/common/state_notify.c owns layer_state_set_kb. */
+extern void q0_he_update_layer_indicators(layer_state_t state);
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    q0_he_update_layer_indicators(state);
+    return state;
+}
+
 // Q0 Plus: Enter(tall) at [4,4], period at [5,3], no [5,4]
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
